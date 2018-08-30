@@ -54,15 +54,10 @@ class EthereumServiceProvider extends ServiceProvider
         if (! $this->hasConfigSection()) {
             $this->raiseRunTimeException('Missing ethereum configuration section.');
         }
-        // Check for username.
+        // Check for host.
         if ($this->configHasNo('host')) {
             $this->raiseRunTimeException('Missing ethereum configuration: "host".');
         }
-        // check the password
-        if ($this->configHasNo('port')) {
-            $this->raiseRunTimeException('Missing ethereum configuration: "port".');
-        }
-
 
         return new Ethereum($config->get('ethereum.host'), $config->get('ethereum.port'));
 

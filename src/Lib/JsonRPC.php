@@ -21,8 +21,15 @@ class JsonRPC
         $this->host = $host;
         $this->port = $port;
         $this->version = $version;
-        $this->client=new Client([
-            'base_uri' => $this->host.":".$this->port
+
+        $base_uri = $this->host;
+
+        if ($this->port) {
+            $base_uri .= ':' . $this->port;
+        }
+
+        $this->client = new Client([
+            'base_uri' => $base_uri
         ]);
     }
 
